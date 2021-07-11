@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import HomeScreen from './src/screens/HomeScreen';
+import StartGameScreen from './src/screens/StartGameScreen';
+import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+
+const MainStack = createStackNavigator();
+const RootStack = createStackNavigator();
+
+function MainStackScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MainStack.Navigator>
+      <MainStack.Screen name="Home" component={HomeScreen} />
+    </MainStack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function App() {
+  return (
+    <NavigationContainer>
+      <RootStack.Navigator mode="modal" headerMode="none">
+        <RootStack.Screen name="Main" component={MainStackScreen} />
+        <RootStack.Screen name="StartGame" component={StartGameScreen} />
+      </RootStack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
+
