@@ -4,7 +4,7 @@ import StartGameScreen from './src/screens/StartGameScreen';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import ShowCharacters from './src/components/ShowCharacters';
 
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -23,6 +23,7 @@ function App() {
       <RootStack.Navigator mode="modal" headerMode="none">
         <RootStack.Screen name="Main" component={MainStackScreen} />
         <RootStack.Screen name="StartGame" component={StartGameScreen} />
+        <RootStack.Screen name="ShowCharacters" component={ShowCharacters} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
