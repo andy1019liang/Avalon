@@ -1,5 +1,6 @@
 import { CharacterEnum, CharacterMap, getGoodBadCharacterCounts, goodAndBadCharactersMap, ICharacter } from "../character";
 import { GameConfig } from "../gameConfig";
+import { playerMissionMap } from "../mission";
 
 export function shuffle(array: any[]) {
     var currentIndex = array.length,  randomIndex;
@@ -69,4 +70,8 @@ export function generateCharacters(gameConfig: GameConfig){
     }
     characters = shuffle(characters);
     return characters;
+}
+
+export function generateMission(playerCount: number){
+    return playerMissionMap[playerCount];
 }

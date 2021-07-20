@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet, Text } from 'react-native';
+import { GameConfig } from 'src/core/gameConfig';
 import { ICharacter } from '../core/character';
 import Character from './Character';
+import GameBoard from './GameBoard';
 
 export default function ShowCharacters(props: any) {
     const characters = props.route.params.characters as ICharacter[];
+    const gameConfig = props.route.params.gameConfig as GameConfig;
     const [curCharacterIndex, setCurCharacterIndex] = useState(0);
     const [hide, setHide] = useState(true);
     const showNext = () => {
@@ -30,7 +33,7 @@ export default function ShowCharacters(props: any) {
             {hide ? null : 
             <Character character={characters[curCharacterIndex]}></Character>}
             {hasNext() ? <Button title={hide ? 'Show': 'Next'} onPress={() => showNext()}></Button>
-                : <Text>Game start</Text>}
+                : <GameBoard gameConfig={gameConfig}></GameBoard>}
             
         </View>
     );

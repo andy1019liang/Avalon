@@ -8,6 +8,8 @@ export class Mission {
     }
 }
 
+type playerMissionMapType = Record<number, Mission[]>;
+
 export const playerMissionMap = {
     5: [
         new Mission(2,1),
@@ -45,4 +47,4 @@ export const playerMissionMap = {
         new Mission(4,1),
         new Mission(5,2),
         new Mission(5,1)],
-}
+} as playerMissionMapType;

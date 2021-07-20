@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Button, StyleSheet, Text, TextInput, Keyboard, TouchableWithoutFeedback, Switch } from 'react-native';
 import { CharacterMap, CharacterEnum } from '../core/character';
 import { GameConfig } from '../core/gameConfig';
-import { generateCharacters } from '../core/services/gameService';
+import { generateCharacters, generateMission } from '../core/services/gameService';
 
 export default function StartGameScreen({navigation}:any) {
 
@@ -52,9 +52,11 @@ export default function StartGameScreen({navigation}:any) {
     } 
 
     const beginGame = () => {
-        const characters = generateCharacters(createGameConfig());
+        const gameConfig = createGameConfig();
+        const characters = generateCharacters(gameConfig);
         navigation.navigate('ShowCharacters', {
-            characters
+            characters,
+            gameConfig
         });
     }
 
@@ -63,7 +65,8 @@ export default function StartGameScreen({navigation}:any) {
             playerCount: Number(playerCount),
             usePercival: usePercival,
             useMordred: useMordred,
-            useMorgana: useMorgana
+            useMorgana: useMorgana,
+            missions: generateMission(Number(playerCount))
         } as GameConfig;
         return gameConfig;
     }

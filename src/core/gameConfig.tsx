@@ -1,3 +1,5 @@
+import { Mission } from "./mission";
+
 export interface GameConfig {
     playerCount: number;
     usePercival: boolean;
@@ -5,4 +7,5 @@ export interface GameConfig {
     useMordred: boolean;
     useOberon: boolean;
     useLadyOfTheLake: boolean;
+    missions: Mission[];
 }
