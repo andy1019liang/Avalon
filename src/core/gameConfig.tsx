@@ -1,4 +1,8 @@
 export interface GameConfig {
     playerCount: number;
-    useCharacter2: boolean;
+    usePercival: boolean;
+    useMorgana: boolean;
+    useMordred: boolean;
+    useOberon: boolean;
+    useLadyOfTheLake: boolean;
 }

@@ -1,34 +1,54 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet, Text, TextInput, Keyboard, TouchableWithoutFeedback, Switch } from 'react-native';
-import { characterTypes } from '../core/character';
+import { CharacterMap, CharacterEnum } from '../core/character';
 import { GameConfig } from '../core/gameConfig';
 import { generateCharacters } from '../core/services/gameService';
 
 export default function StartGameScreen({navigation}:any) {
 
     const [playerCount, setPlayerCount] = useState('');
-
     //TODO - Build logic to show additional character when player number met.
-    const [useCharacter2, setUseCharacter2] = useState(false);
+    const [usePercival, setUsePercival] = useState(false);
+    const [useMorgana, setUseMorgana] = useState(false);
+    const [useMordred, setUseMordered] = useState(false);
     var characters = [];
-    characters.push(
-        <View key={1}>
-            <Text>Use {characterTypes.CHARACTER1} </Text>
-        </View>
-    )
-    if(Number(playerCount) > 5){
+    if(Number(playerCount) >= 7){
+        characters.push(
+            <View key={1}>
+                <Text>Use {CharacterMap[CharacterEnum.Percival].name} </Text>
+                <Switch
+                    trackColor={{ false: "#767577", true: "#81b0ff"}}
+                    thumColor={usePercival ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={setUsePercival}
+                    value={usePercival}>
+                </Switch>
+            </View>
+        );
         characters.push(
             <View key={2}>
-            <Text>Use {characterTypes.CHARACTER2} </Text>
-            <Switch
-                trackColor={{ false: "#767577", true: "#81b0ff"}}
-                thumColor={useCharacter2 ? "#f5dd4b" : "#f4f3f4"}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={setUseCharacter2}
-                value={useCharacter2}>
-            </Switch>
-        </View>
-        )
+                <Text>Use {CharacterMap[CharacterEnum.Morgana].name} </Text>
+                <Switch
+                    trackColor={{ false: "#767577", true: "#81b0ff"}}
+                    thumColor={useMorgana ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={setUseMorgana}
+                    value={useMorgana}>
+                </Switch>
+            </View>
+        );
+        characters.push(
+            <View key={3}>
+                <Text>Use {CharacterMap[CharacterEnum.Mordred].name} </Text>
+                <Switch
+                    trackColor={{ false: "#767577", true: "#81b0ff"}}
+                    thumColor={useMordred ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={setUseMordered}
+                    value={useMordred}>
+                </Switch>
+            </View>
+        );
     } 
 
     const beginGame = () => {
@@ -41,9 +61,18 @@ export default function StartGameScreen({navigation}:any) {
     const createGameConfig = () => {
         const gameConfig = {
             playerCount: Number(playerCount),
-            useCharacter2: useCharacter2
+            usePercival: usePercival,
+            useMordred: useMordred,
+            useMorgana: useMorgana
         } as GameConfig;
         return gameConfig;
+    }
+
+    const onPlayerCountChange =  (value: string) => {
+        if(Number(value) < 5 || Number(value) > 10){
+            return;
+        }
+        setPlayerCount(value);
     }
     return (
         <TouchableWithoutFeedback  onPress={Keyboard.dismiss} style={styles.container}>
@@ -54,7 +83,7 @@ export default function StartGameScreen({navigation}:any) {
                     <TextInput 
                         style={styles.input}
                         value={playerCount}
-                        onChangeText={value => setPlayerCount(value)}
+                        onChangeText={value => onPlayerCountChange(value)}
                         keyboardType="numeric"
                         />
                 </View>

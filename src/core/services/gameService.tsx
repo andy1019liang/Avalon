@@ -1,4 +1,4 @@
-import { characterTypes } from "../character";
+import { CharacterEnum, CharacterMap, getGoodBadCharacterCounts, goodAndBadCharactersMap, ICharacter } from "../character";
 import { GameConfig } from "../gameConfig";
 
 export function shuffle(array: any[]) {
@@ -20,21 +20,52 @@ export function shuffle(array: any[]) {
 }
 
 export function generateCharacters(gameConfig: GameConfig){
-    let characters = [];
+    const playerCount = gameConfig.playerCount;
+    const goodAndBadCharacterCount = getGoodBadCharacterCounts(playerCount);
+    let characters: ICharacter[] = [];
+    let goodPlayerCount = 0;
+    let badPlayerCount = 0;
     let i = 0;
 
-    if(gameConfig.useCharacter2){
-        characters.push({
-            type: characterTypes.CHARACTER2,
-            id: i++
-        });
+    characters.push(CharacterMap[CharacterEnum.Merlin]);
+    characters.push(CharacterMap[CharacterEnum.Assassin]);
+
+    goodPlayerCount++;
+    badPlayerCount++;
+
+    if(gameConfig.usePercival){
+        characters.push(CharacterMap[CharacterEnum.Percival]);
+        goodPlayerCount++;
     }
-    for(i; i < gameConfig.playerCount; i++){
-        
-        characters.push({
-            type: characterTypes.CHARACTER1,
-            id: i
-        });
+
+    if(gameConfig.useMorgana){
+        characters.push(CharacterMap[CharacterEnum.Morgana]);
+        badPlayerCount++;
+    }
+
+    if(gameConfig.useMordred){
+        characters.push(CharacterMap[CharacterEnum.Mordred]);
+        badPlayerCount++;
+    }
+
+    if(gameConfig.useOberon){
+        characters.push(CharacterMap[CharacterEnum.Oberon]);
+        badPlayerCount++;
+    }
+
+    if(gameConfig.useLadyOfTheLake){
+        characters.push(CharacterMap[CharacterEnum.LadyOfTheLake]);
+        goodPlayerCount++;
+    }
+
+    while(goodPlayerCount < goodAndBadCharacterCount.good){
+        characters.push(CharacterMap[CharacterEnum.LoyalServantOfArthur]);
+        goodPlayerCount++;
+    }
+
+    while(badPlayerCount < goodAndBadCharacterCount.bad){
+        characters.push(CharacterMap[CharacterEnum.MinionOfMordred]);
+        badPlayerCount++;
     }
     characters = shuffle(characters);
     return characters;

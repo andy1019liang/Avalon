@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet, Text } from 'react-native';
+import { ICharacter } from '../core/character';
+import Character from './Character';
 
 export default function ShowCharacters(props: any) {
-    const characters = props.route.params.characters;
-
-    const [curCharacter, setCurCharacter] = useState(characters[0]);
+    const characters = props.route.params.characters as ICharacter[];
+    const [curCharacterIndex, setCurCharacterIndex] = useState(0);
     const [hide, setHide] = useState(true);
-
     const showNext = () => {
         if(hide){
             setHide(false);
@@ -16,18 +16,19 @@ export default function ShowCharacters(props: any) {
             return null;
         }
         else{
-            setCurCharacter(characters[characters.indexOf(curCharacter) + 1]);
+            setCurCharacterIndex(curCharacterIndex + 1);
             setHide(true);
         }
     }
 
     const hasNext = () => {
-        return characters.indexOf(curCharacter) !== characters.length - 1
+        return curCharacterIndex !== characters.length;
     }
 
     return (
         <View style={styles.container}>
-            {hide ? null : <Text>{curCharacter.type}</Text>}
+            {hide ? null : 
+            <Character character={characters[curCharacterIndex]}></Character>}
             {hasNext() ? <Button title={hide ? 'Show': 'Next'} onPress={() => showNext()}></Button>
                 : <Text>Game start</Text>}
             

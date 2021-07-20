@@ -1,0 +1,56 @@
+{
+  "loyalServantOfArthur": {
+    "name": "Loyal Servant of Arthur",
+    "description": "As a generic, loyal servant of Arthur, you  have no information about who is good and who is evil.",
+    "isGood": true,
+    "image": "http://gamekicker.herokuapp.com/assets/loyal4.JPG"
+  },
+  "MinionOfMordred": {
+    "name": "Minion of Mordred",
+    "description": "Your primary goal is to lose missions.  Your secondary goal is to try to discover who is Merlin so that you can help the Assassin if you fail your primary goal.",
+    "isGood": false,
+    "image": "http://gamekicker.herokuapp.com/assets/minion2-3c0bb73b7464def321b4c4dc8cefedcb.JPG"
+  },
+  "Merlin": {
+    "name": "Merlin",
+    "description": "Merlin must steer the knights correctly without it being obvious they know who all the minions are, which means they must make deductions based on actions taken by players in the game.",
+    "isGood": true,
+    "image": "https://images.saymedia-content.com/.image/t_share/MTc0NDU3MTI5NzYyMjM1NzUy/how-to-play-avalon.jpg"
+  },
+  "Assassin": {
+    "name": "Assassin",
+    "description": "Merlin votes correctly pretty much always so the assassin’s most important task is watching the voting to see who is able to do that.  When you know the players in the game, you can often tell who knows too much, but when you do not, you often have to look to the voting results to deduce who is Merlin.",
+    "isGood": false,
+    "image": "https://images.saymedia-content.com/.image/t_share/MTc0NDU3MTI5NzYyMTA0Njgw/how-to-play-avalon.jpg"
+  },
+  "Percival": {
+    "name": "Percival",
+    "description": "Percival knows who Morgana and Merlin are, which is some information, but not nearly as much as Merlin.  Your primary job is to pretend to be Merlin.  Your secondary job is to determine who is Morgana so you can vote down quests in which they try to participate.",
+    "isGood": true,
+    "image": "https://theresistanceavalon.com/_nuxt/img/percival.5a24a09.png"
+  },
+  "Morgana": {
+    "name": "Morgana",
+    "description": "Morgana should be added when Percival is also added to replace some of the generic good and evil characters and make it a little more interesting for the non-Merlin and non-Assassin characters.  Percival knows who Morgana and Merlin are, but not which is which.",
+    "isGood": false,
+    "image": "https://theresistanceavalon.com/_nuxt/img/morgana.02da333.png"
+  },
+  "Mordred": {
+    "name": "Mordred",
+    "description": "Mordred helps the evil side because Merlin does not know his identity, but hurts in their ability to detect Merlin because he can’t always vote correctly anymore.  Basically, adding him helps them win more often by just causing 3 missions to fail, but makes it harder to assassinate Merlin in the end.  As Mordred, it is imperative that you recognize your unique situation because you will be able to watch the votes to see how everyone votes for teams to which the other minions belong.",
+    "isGood": false,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjtvGdglxN4Txin1rjOOkSHIbzctvNDVnVx3O4CaYH1FioxqK6"
+  },
+  "Oberon": {
+    "name": "Oberon",
+    "description": "Oberon is a secret force of evil that is unknown to the other evil players.  He is a fun addition to a game, but makes it a challenge for the minions, so I recommend only considering him during a 7 or 10 player game.  Adding him is a great way to spice up a game of veterans.",
+    "isGood": false,
+    "image": "https://www.regledujeu.fr/wp-content/uploads/oberon.jpg"
+  },
+  "LadyOfTheLake": {
+    "name": "Lady of the Lake",
+    "description": "The Lady of the Lake is optional, but it is another great way to spice up a game among Avalon veterans.  After the second, third, and fourth quests are completed, the person with Lady of the Lake gets to exchange its ownership for that player’s true allegiance.  It doesn’t give either side much of an advantage because either can use its power to their advantage.",
+    "isGood": false,
+    "image": ""
+  }
+}
