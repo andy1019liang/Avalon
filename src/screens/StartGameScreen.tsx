@@ -52,6 +52,9 @@ export default function StartGameScreen({navigation}:any) {
     } 
 
     const beginGame = () => {
+        if(Number(playerCount) < 5 || Number(playerCount) >= 10){
+            return;
+        }
         const gameConfig = createGameConfig();
         const characters = generateCharacters(gameConfig);
         navigation.navigate('ShowCharacters', {
@@ -72,9 +75,6 @@ export default function StartGameScreen({navigation}:any) {
     }
 
     const onPlayerCountChange =  (value: string) => {
-        if(Number(value) < 5 || Number(value) > 10){
-            return;
-        }
         setPlayerCount(value);
     }
     return (

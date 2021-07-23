@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Button, StyleSheet, Text } from 'react-native';
+import { View, Button, StyleSheet, Text, SafeAreaView } from 'react-native';
 import { GameConfig } from 'src/core/gameConfig';
 import { ICharacter } from '../core/character';
 import Character from './Character';
 import GameBoard from './GameBoard';
 
-export default function ShowCharacters(props: any) {
+export default function ShowCharacters(props: any ) {
     const characters = props.route.params.characters as ICharacter[];
     const gameConfig = props.route.params.gameConfig as GameConfig;
     const [curCharacterIndex, setCurCharacterIndex] = useState(0);
@@ -29,13 +29,15 @@ export default function ShowCharacters(props: any) {
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {hide ? null : 
             <Character character={characters[curCharacterIndex]}></Character>}
             {hasNext() ? <Button title={hide ? 'Show': 'Next'} onPress={() => showNext()}></Button>
                 : <GameBoard gameConfig={gameConfig}></GameBoard>}
-            
-        </View>
+            <Button
+                    title="End Game"
+                    onPress={() => props.navigation.navigate('Home')}/>
+        </SafeAreaView>
     );
 }
 
